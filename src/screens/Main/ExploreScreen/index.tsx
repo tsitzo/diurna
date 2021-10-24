@@ -1,13 +1,13 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 
 import { styles } from "./styles";
 
 const ExploreScreen = () => {
   return (
-    <View>
+    <ScrollView style={{ flex: 1 }}>
       <Text></Text>
-    </View>
+    </ScrollView>
   );
 };
 
