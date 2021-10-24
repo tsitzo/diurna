@@ -1,17 +1,18 @@
 import React, { FC, useState, createContext, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Category } from "../types/types";
+import { categories } from "../data/categories";
 
 type CategoriesContextState = {
   categories: Category[];
-  selectedCategories: Category[] | [];
+  selectedCategories: Category[];
   addCategory: (category: Category) => void;
   removeCategory: (category: Category) => void;
 };
 
 const contextDefaultValue: CategoriesContextState = {
-  categories: [],
-  selectedCategories: [],
+  categories: categories,
+  selectedCategories: [] as Category[],
   addCategory: () => {},
   removeCategory: () => {},
 };
@@ -24,7 +25,7 @@ export const CategoriesContextProvider: FC = ({ children }) => {
     contextDefaultValue.categories
   );
 
-  const [selectedCategories, setSelectedCategories] = useState<Category[] | []>(
+  const [selectedCategories, setSelectedCategories] = useState<Category[]>(
     contextDefaultValue.selectedCategories
   );
 
@@ -60,6 +61,7 @@ export const CategoriesContextProvider: FC = ({ children }) => {
 
   useEffect(() => {
     loadCategories();
+    console.log(categories);
   }, []);
 
   useEffect(() => {

@@ -7,4 +7,9 @@ export const styles = StyleSheet.create({
   md: { fontSize: 18, fontWeight: "600" },
   lg: { fontSize: 22, fontWeight: "700" },
   xl: { fontSize: 26, fontWeight: "700" },
+  selectionTile: {
+    fontSize: 14,
+    fontWeight: "700",
+    textTransform: "capitalize",
+  },
 });

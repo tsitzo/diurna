@@ -1,7 +1,7 @@
-import { useTheme } from "@react-navigation/native";
 import React, { FC, useContext } from "react";
 import { View, Image, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "@react-navigation/native";
 
 import Typography from "../../text/Typography";
 
@@ -22,14 +22,14 @@ const CountryPickerTile: FC<ICountryPickerTileProps> = ({ country }) => {
       <View style={styles.row}>
         <View style={styles.leftContainer}>
           <Image source={{ uri: country.flag }} style={styles.flag} />
-          <Typography>{country.name}</Typography>
+          <Typography variant="selectionTile">{country.name}</Typography>
         </View>
 
         {selectedCountry === country.iso && (
           <View>
             <Ionicons
               name="md-checkmark-sharp"
-              size={18}
+              size={15}
               color={colors.primary}
             />
           </View>

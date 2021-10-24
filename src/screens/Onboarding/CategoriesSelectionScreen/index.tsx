@@ -9,11 +9,14 @@ import Typography from "../../../components/text/Typography";
 import { OnboardingStackNavProps } from "../../../navigation/OnboardingStack";
 
 import { styles } from "./styles";
+import { CategoriesContext } from "../../../context/Categories.context";
+import CategoryPickerTile from "../../../components/misc/CategoryPickerTile";
 
 const CategoriesSelectionScreen = ({
   navigation,
 }: OnboardingStackNavProps<"CategoriesSelectionScreen">) => {
   const { colors } = useTheme();
+  const { categories, selectedCategories } = useContext(CategoriesContext);
   return (
     <SafeArea>
       <View style={styles.page}>
@@ -25,9 +28,11 @@ const CategoriesSelectionScreen = ({
             access to related news.
           </Typography>
           <Spacer y={10} />
-          {/* <FlatList
-           
-          /> */}
+          <FlatList
+            data={categories}
+            renderItem={({ item }) => <CategoryPickerTile category={item} />}
+            keyExtractor={(item) => item.name}
+          />
         </View>
 
         <View style={styles.bottomWrapper}>
@@ -35,13 +40,13 @@ const CategoriesSelectionScreen = ({
             style={[
               styles.fab,
               {
-                // backgroundColor:
-                // selectedCountry === "" ? "grey" : colors.primary,
+                backgroundColor:
+                  selectedCategories.length === 0 ? "grey" : colors.primary,
               },
             ]}
-            onPress={() => navigation.push("CategoriesSelectionScreen")}
+            // onPress={() => navigation.push("CategoriesSelectionScreen")}
           >
-            <Typography>Next</Typography>
+            <Typography>Done</Typography>
           </TouchableOpacity>
         </View>
       </View>
