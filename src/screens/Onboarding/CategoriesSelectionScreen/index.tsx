@@ -8,14 +8,15 @@ import Typography from "../../../components/text/Typography";
 import CategoryPickerTile from "../../../components/misc/CategoryPickerTile";
 
 import { OnboardingStackNavProps } from "../../../navigation/OnboardingStack";
-import { styles } from "./styles";
 import { SettingsContext } from "../../../context/Settings.context";
+import { styles } from "./styles";
 
 const CategoriesSelectionScreen = ({
   navigation,
 }: OnboardingStackNavProps<"CategoriesSelectionScreen">) => {
   const { colors } = useTheme();
-  const { categories, selectedCategories } = useContext(SettingsContext);
+  const { categories, selectedCategories, setFirstVisitFalse } =
+    useContext(SettingsContext);
   return (
     <SafeArea>
       <View style={styles.page}>
@@ -43,7 +44,9 @@ const CategoriesSelectionScreen = ({
                   selectedCategories.length === 0 ? "grey" : colors.primary,
               },
             ]}
-            // onPress={() => navigation.push("CategoriesSelectionScreen")}
+            onPress={() =>
+              selectedCategories.length > 0 && setFirstVisitFalse()
+            }
           >
             <Typography variant="fabText">Done</Typography>
           </TouchableOpacity>

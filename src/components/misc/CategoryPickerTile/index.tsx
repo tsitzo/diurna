@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 
 import Typography from "../../text/Typography";
+
 import { Category } from "../../../types/types";
 import { SettingsContext } from "../../../context/Settings.context";
 import { getCategoryIcon } from "../../../utils/getCategoryIcon";

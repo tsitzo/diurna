@@ -8,18 +8,22 @@ type SettingsContextState = {
   categories: Category[];
   selectedCategories: Category[];
   selectedCountry: string;
+  isFirstVisit: boolean;
   addCategory: (category: Category) => void;
   removeCategory: (category: Category) => void;
   selectCountry: (country: string) => void;
+  setFirstVisitFalse: () => void;
 };
 
 const contextDefaultValue: SettingsContextState = {
   categories: categories,
   selectedCategories: [] as Category[],
   selectedCountry: "",
+  isFirstVisit: true,
   selectCountry: () => {},
   addCategory: () => {},
   removeCategory: () => {},
+  setFirstVisitFalse: () => {},
 };
 
 export const SettingsContext =
@@ -38,6 +42,10 @@ export const SettingsContextProvider: FC = ({ children }) => {
     contextDefaultValue.selectedCategories
   );
 
+  const [isFirstVisit, setIsFirstVisit] = useState<boolean>(
+    contextDefaultValue.isFirstVisit
+  );
+
   const addCategory = (category: Category) => {
     setSelectedCategories([...selectedCategories, category]);
   };
@@ -46,6 +54,12 @@ export const SettingsContextProvider: FC = ({ children }) => {
     setSelectedCategories(
       selectedCategories.filter((c) => c.name !== category.name)
     );
+  };
+
+  const selectCountry = (country: string) => setSelectedCountry(country);
+
+  const setFirstVisitFalse = () => {
+    setIsFirstVisit(false);
   };
 
   const loadCategories = async () => {
@@ -68,8 +82,6 @@ export const SettingsContextProvider: FC = ({ children }) => {
     }
   };
 
-  const selectCountry = (country: string) => setSelectedCountry(country);
-
   const loadSelectedCountry = async () => {
     try {
       const value = await AsyncStorage.getItem("@diurna/selectedCountry");
@@ -90,8 +102,41 @@ export const SettingsContextProvider: FC = ({ children }) => {
     }
   };
 
+  const saveFirstVisit = async (value: boolean) => {
+    try {
+      const jsonValue = value === true ? "true" : "false";
+      await AsyncStorage.setItem("@diurna/firstVisit", jsonValue);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const loadFirstVisit = async () => {
+    try {
+      const value = await AsyncStorage.getItem("@diurna/firstVisit");
+
+      if (value === "true") {
+        setIsFirstVisit(true);
+      } else if (value === "false") {
+        setIsFirstVisit(false);
+      } else {
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     loadSelectedCountry();
+  }, []);
+
+  useEffect(() => {
+    loadCategories();
+  }, []);
+
+  useEffect(() => {
+    loadFirstVisit();
   }, []);
 
   useEffect(() => {
@@ -99,23 +144,23 @@ export const SettingsContextProvider: FC = ({ children }) => {
   }, [selectedCountry]);
 
   useEffect(() => {
-    loadCategories();
-    console.log(categories);
-  }, []);
+    saveFirstVisit(isFirstVisit!);
+  }, [isFirstVisit]);
 
   useEffect(() => {
     saveCategories(selectedCategories!);
   }, [selectedCategories]);
-
   return (
     <SettingsContext.Provider
       value={{
         selectedCountry,
         categories,
         selectedCategories,
+        isFirstVisit,
         selectCountry,
         addCategory,
         removeCategory,
+        setFirstVisitFalse,
       }}
     >
       {children}
