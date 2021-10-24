@@ -17,7 +17,11 @@ const Typography: FC<ITypographyProps> = ({
 }) => {
   const { colors } = useTheme();
   const textStyles = [styles.root, styles[variant]];
-  return <Text style={[{ color: colors[color] }, textStyles]} {...rest}></Text>;
+  return (
+    <Text style={[{ color: colors[color] }, textStyles]} {...rest}>
+      {children}
+    </Text>
+  );
 };
 
 export default Typography;

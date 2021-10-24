@@ -27,13 +27,14 @@ export const OnboardingStack = () => {
       screenOptions={{ headerShown: false, gestureEnabled: false }}
     >
       <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-      <Stack.Screen
-        name="CategoriesSelectionScreen"
-        component={CategoriesSelectionScreen}
-      />
+
       <Stack.Screen
         name="CountrySelectionScreen"
         component={CountrySelectionScreen}
+      />
+      <Stack.Screen
+        name="CategoriesSelectionScreen"
+        component={CategoriesSelectionScreen}
       />
     </Stack.Navigator>
   );
