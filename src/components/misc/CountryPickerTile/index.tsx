@@ -5,9 +5,9 @@ import { useTheme } from "@react-navigation/native";
 
 import Typography from "../../text/Typography";
 
-import { CountryContext } from "../../../context/Country.context";
 import { Country } from "../../../types/types";
 import { styles } from "./styles";
+import { SettingsContext } from "../../../context/Settings.context";
 
 interface ICountryPickerTileProps {
   country: Country;
@@ -15,7 +15,7 @@ interface ICountryPickerTileProps {
 
 const CountryPickerTile: FC<ICountryPickerTileProps> = ({ country }) => {
   const { colors } = useTheme();
-  const { selectedCountry, selectCountry } = useContext(CountryContext);
+  const { selectedCountry, selectCountry } = useContext(SettingsContext);
 
   return (
     <TouchableOpacity onPress={() => selectCountry(country.iso)}>

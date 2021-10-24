@@ -1,26 +1,35 @@
 import React, { FC, useState, createContext, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { Category } from "../types/types";
 import { categories } from "../data/categories";
 
-type CategoriesContextState = {
+type SettingsContextState = {
   categories: Category[];
   selectedCategories: Category[];
+  selectedCountry: string;
   addCategory: (category: Category) => void;
   removeCategory: (category: Category) => void;
+  selectCountry: (country: string) => void;
 };
 
-const contextDefaultValue: CategoriesContextState = {
+const contextDefaultValue: SettingsContextState = {
   categories: categories,
   selectedCategories: [] as Category[],
+  selectedCountry: "",
+  selectCountry: () => {},
   addCategory: () => {},
   removeCategory: () => {},
 };
 
-export const CategoriesContext =
-  createContext<CategoriesContextState>(contextDefaultValue);
+export const SettingsContext =
+  createContext<SettingsContextState>(contextDefaultValue);
 
-export const CategoriesContextProvider: FC = ({ children }) => {
+export const SettingsContextProvider: FC = ({ children }) => {
+  const [selectedCountry, setSelectedCountry] = useState<string>(
+    contextDefaultValue.selectedCountry
+  );
+
   const [categories, setCategories] = useState<Category[]>(
     contextDefaultValue.categories
   );
@@ -59,6 +68,36 @@ export const CategoriesContextProvider: FC = ({ children }) => {
     }
   };
 
+  const selectCountry = (country: string) => setSelectedCountry(country);
+
+  const loadSelectedCountry = async () => {
+    try {
+      const value = await AsyncStorage.getItem("@diurna/selectedCountry");
+      if (value !== null) {
+        setSelectedCountry(JSON.parse(value));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const saveSelectedCountry = async (value: string) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem("@diurna/selectedCountry", jsonValue);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    loadSelectedCountry();
+  }, []);
+
+  useEffect(() => {
+    saveSelectedCountry(selectedCountry);
+  }, [selectedCountry]);
+
   useEffect(() => {
     loadCategories();
     console.log(categories);
@@ -69,10 +108,17 @@ export const CategoriesContextProvider: FC = ({ children }) => {
   }, [selectedCategories]);
 
   return (
-    <CategoriesContext.Provider
-      value={{ categories, selectedCategories, addCategory, removeCategory }}
+    <SettingsContext.Provider
+      value={{
+        selectedCountry,
+        categories,
+        selectedCategories,
+        selectCountry,
+        addCategory,
+        removeCategory,
+      }}
     >
       {children}
-    </CategoriesContext.Provider>
+    </SettingsContext.Provider>
   );
 };

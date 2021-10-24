@@ -5,19 +5,18 @@ import { useTheme } from "@react-navigation/native";
 import SafeArea from "../../../components/layout/SafeArea";
 import Spacer from "../../../components/layout/Spacer";
 import Typography from "../../../components/text/Typography";
-import { CountryContext } from "../../../context/Country.context";
-
-import { countries } from "../../../data/countries";
-import { OnboardingStackNavProps } from "../../../navigation/OnboardingStack";
-
-import { styles } from "./styles";
 import CountryPickerTile from "../../../components/misc/CountryPickerTile";
+
+import { SettingsContext } from "../../../context/Settings.context";
+import { OnboardingStackNavProps } from "../../../navigation/OnboardingStack";
+import { countries } from "../../../data/countries";
+import { styles } from "./styles";
 
 const CountrySelectionScreen = ({
   navigation,
 }: OnboardingStackNavProps<"CountrySelectionScreen">) => {
   const { colors } = useTheme();
-  const { selectedCountry } = useContext(CountryContext);
+  const { selectedCountry } = useContext(SettingsContext);
   return (
     <SafeArea>
       <View style={styles.page}>
@@ -48,7 +47,7 @@ const CountrySelectionScreen = ({
             ]}
             onPress={() => navigation.push("CategoriesSelectionScreen")}
           >
-            <Typography>Next</Typography>
+            <Typography variant="fabText">Next</Typography>
           </TouchableOpacity>
         </View>
       </View>

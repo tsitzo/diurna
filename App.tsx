@@ -1,15 +1,12 @@
 import React from "react";
-import { CategoriesContextProvider } from "./src/context/Categories.context";
-import { CountryContextProvider } from "./src/context/Country.context";
+import { SettingsContextProvider } from "./src/context/Settings.context";
 import { Routes } from "./src/navigation/Routes";
 
 const App = () => {
   return (
-    <CountryContextProvider>
-      <CategoriesContextProvider>
-        <Routes />
-      </CategoriesContextProvider>
-    </CountryContextProvider>
+    <SettingsContextProvider>
+      <Routes />
+    </SettingsContextProvider>
   );
 };
 

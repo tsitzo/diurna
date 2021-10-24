@@ -1,20 +1,20 @@
 import React, { FC, useContext } from "react";
-import { View, Image, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 
 import Typography from "../../text/Typography";
 import { Category } from "../../../types/types";
-import { CategoriesContext } from "../../../context/Categories.context";
-import { styles } from "./styles";
+import { SettingsContext } from "../../../context/Settings.context";
 import { getCategoryIcon } from "../../../utils/getCategoryIcon";
+import { styles } from "./styles";
 
 interface ICategoryPickerTileProps {
   category: Category;
 }
 const CategoryPickerTile: FC<ICategoryPickerTileProps> = ({ category }) => {
   const { selectedCategories, addCategory, removeCategory } =
-    useContext(CategoriesContext);
+    useContext(SettingsContext);
 
   const { colors } = useTheme();
 

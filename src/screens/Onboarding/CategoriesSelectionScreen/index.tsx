@@ -5,18 +5,17 @@ import { useTheme } from "@react-navigation/native";
 import SafeArea from "../../../components/layout/SafeArea";
 import Spacer from "../../../components/layout/Spacer";
 import Typography from "../../../components/text/Typography";
+import CategoryPickerTile from "../../../components/misc/CategoryPickerTile";
 
 import { OnboardingStackNavProps } from "../../../navigation/OnboardingStack";
-
 import { styles } from "./styles";
-import { CategoriesContext } from "../../../context/Categories.context";
-import CategoryPickerTile from "../../../components/misc/CategoryPickerTile";
+import { SettingsContext } from "../../../context/Settings.context";
 
 const CategoriesSelectionScreen = ({
   navigation,
 }: OnboardingStackNavProps<"CategoriesSelectionScreen">) => {
   const { colors } = useTheme();
-  const { categories, selectedCategories } = useContext(CategoriesContext);
+  const { categories, selectedCategories } = useContext(SettingsContext);
   return (
     <SafeArea>
       <View style={styles.page}>
@@ -46,7 +45,7 @@ const CategoriesSelectionScreen = ({
             ]}
             // onPress={() => navigation.push("CategoriesSelectionScreen")}
           >
-            <Typography>Done</Typography>
+            <Typography variant="fabText">Done</Typography>
           </TouchableOpacity>
         </View>
       </View>

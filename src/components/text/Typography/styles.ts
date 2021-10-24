@@ -12,4 +12,10 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     textTransform: "capitalize",
   },
+  fabText: {
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 5,
+    textShadowColor: "#000",
+    fontWeight: "700",
+  },
 });
