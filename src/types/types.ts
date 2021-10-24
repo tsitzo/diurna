@@ -3,3 +3,7 @@ export type Country = {
   iso: string;
   flag: string;
 };
+
+export type Category = {
+  name: string;
+};
