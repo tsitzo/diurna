@@ -18,8 +18,9 @@ import { SettingsContext } from "../../../context/Settings.context";
 import { getCategoryIcon } from "../../../utils/getCategoryIcon";
 
 import { styles } from "./styles";
+import { MainStackNavProps } from "../../../navigation/MainStack";
 
-const ExploreScreen = () => {
+const ExploreScreen = ({ navigation }: MainStackNavProps<"MainTabs">) => {
   const { colors } = useTheme();
   const { selectedCategories } = useContext(SettingsContext);
   const [query, setQuery] = useState<string>("");
@@ -48,6 +49,13 @@ const ExploreScreen = () => {
               placeholder="Search"
               autoCapitalize="none"
               autoCorrect={false}
+              onEndEditing={() => {
+                if (query === "") return;
+                navigation.navigate("SearchResultsScreen", {
+                  query: query,
+                });
+                setQuery("");
+              }}
             />
             {query.length > 0 && (
               <Ionicons
