@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     textTransform: "capitalize",
   },
+  cardTitle: { fontWeight: "700" },
   fabText: {
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 5,

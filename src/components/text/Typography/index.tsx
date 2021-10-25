@@ -5,7 +5,15 @@ import { useTheme } from "@react-navigation/native";
 import { styles } from "./styles";
 
 interface ITypographyProps extends TextProps {
-  variant?: "xs" | "sm" | "md" | "lg" | "xl" | "selectionTile" | "fabText";
+  variant?:
+    | "xs"
+    | "sm"
+    | "md"
+    | "lg"
+    | "xl"
+    | "selectionTile"
+    | "fabText"
+    | "cardTitle";
   color?: "text" | "primary";
 }
 
