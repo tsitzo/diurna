@@ -1,14 +1,14 @@
 import React, { FC } from "react";
-import moment from "moment";
 import { View, TouchableOpacity, Image } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import { AntDesign } from "@expo/vector-icons";
+import moment from "moment";
 
-import { News } from "../../../types/types";
 import Spacer from "../../layout/Spacer";
 import Typography from "../../text/Typography";
 
+import { News } from "../../../types/types";
 import { styles } from "./styles";
+import BookmarkButton from "../BookmarkButton";
 
 interface INewsCardProps {
   news: News;
@@ -38,7 +38,7 @@ const NewsCard: FC<INewsCardProps> = ({ news }) => {
         </View>
       </View>
       <View style={styles.bookmarkButtonContainer}>
-        <AntDesign name="book" size={24} color={colors.primary} />
+        <BookmarkButton news={news} />
       </View>
     </TouchableOpacity>
   );
