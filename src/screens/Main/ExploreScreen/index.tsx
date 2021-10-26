@@ -84,6 +84,11 @@ const ExploreScreen = ({ navigation }: MainStackNavProps<"MainTabs">) => {
                   margin: 7.5,
                   borderRadius: 5,
                 }}
+                onPress={() =>
+                  navigation.push("SearchResultsByCategoryScreen", {
+                    category: item.name,
+                  })
+                }
               >
                 {getCategoryIcon(item.name, colors.primary, 1.5)}
                 <Spacer y={10} />

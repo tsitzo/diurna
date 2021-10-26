@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, FlatList } from "react-native";
 import axios from "axios";
 
@@ -13,23 +13,24 @@ import { MainStackNavProps } from "../../../navigation/MainStack";
 import { News } from "../../../types/types";
 
 import { styles } from "./styles";
+import { SettingsContext } from "../../../context/Settings.context";
 
-const SearchResultsScreen = ({
+const SearchResultsByCategoryScreen = ({
   route,
-}: MainStackNavProps<"SearchResultsScreen">) => {
-  const { query } = route.params;
-
+}: MainStackNavProps<"SearchResultsByCategoryScreen">) => {
+  const { category } = route.params;
+  const { selectedCountry } = useContext(SettingsContext);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [searchResults, setSearchResults] = useState<News[] | null>(null);
 
   useEffect(() => {
-    const fetchSearchResults = async (query: string) => {
+    const fetchSearchResults = async (country: string, category: string) => {
       setIsLoading(true);
       setError(false);
       try {
         const response: any = await axios.get(
-          `https://newsapi.org/v2/top-headlines?q=${query}&pageSize=100&apiKey=${API_KEY}`
+          `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&pageSize=100&apiKey=${API_KEY}`
         );
 
         setSearchResults(response.data.articles);
@@ -39,8 +40,8 @@ const SearchResultsScreen = ({
       setIsLoading(false);
     };
 
-    fetchSearchResults(query);
-  }, [query]);
+    fetchSearchResults(selectedCountry, category);
+  }, [category]);
 
   if (isLoading) {
     return (
@@ -83,4 +84,4 @@ const SearchResultsScreen = ({
   );
 };
 
-export default SearchResultsScreen;
+export default SearchResultsByCategoryScreen;

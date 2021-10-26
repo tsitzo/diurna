@@ -6,10 +6,12 @@ import {
 import { RouteProp } from "@react-navigation/native";
 import { MainTabs } from "./MainTabs";
 import SearchResultsScreen from "../screens/Main/SearchResultsScreen";
+import SearchResultsByCategoryScreen from "../screens/Main/SearchResultsByCategoryScreen";
 
 export type MainStackParams = {
   MainTabs: undefined;
   SearchResultsScreen: { query: string };
+  SearchResultsByCategoryScreen: { category: string };
 };
 
 export type MainStackNavProps<T extends keyof MainStackParams> = {
@@ -34,6 +36,15 @@ export const MainStack = () => {
           headerLargeTitle: true,
           headerTransparent: true,
           headerTitle: route.params.query,
+        })}
+      />
+      <Stack.Screen
+        name="SearchResultsByCategoryScreen"
+        component={SearchResultsByCategoryScreen}
+        options={({ route }) => ({
+          headerLargeTitle: true,
+          headerTransparent: true,
+          headerTitle: route.params.category,
         })}
       />
     </Stack.Navigator>
