@@ -5,13 +5,18 @@ import {
 } from "@react-navigation/native-stack";
 import { RouteProp } from "@react-navigation/native";
 import { MainTabs } from "./MainTabs";
+
 import SearchResultsScreen from "../screens/Main/SearchResultsScreen";
 import SearchResultsByCategoryScreen from "../screens/Main/SearchResultsByCategoryScreen";
+import SettingsSelectCountryScreen from "../screens/Main/SettingsSelectCountryScreen";
+import SettingsSelectCategoriesScreen from "../screens/Main/SettingsSelectCategoriesScreen";
 
 export type MainStackParams = {
   MainTabs: undefined;
   SearchResultsScreen: { query: string };
   SearchResultsByCategoryScreen: { category: string };
+  SettingsSelectCountryScreen: { headerTitle: string };
+  SettingsSelectCategoriesScreen: { headerTitle: string };
 };
 
 export type MainStackNavProps<T extends keyof MainStackParams> = {
@@ -47,6 +52,29 @@ export const MainStack = () => {
           headerTitle: route.params.category,
         })}
       />
+
+      <Stack.Group
+        screenOptions={{
+          headerLargeTitle: true,
+          headerTransparent: true,
+          presentation: "formSheet",
+        }}
+      >
+        <Stack.Screen
+          name="SettingsSelectCountryScreen"
+          component={SettingsSelectCountryScreen}
+          options={({ route }) => ({
+            headerTitle: route.params.headerTitle,
+          })}
+        />
+        <Stack.Screen
+          name="SettingsSelectCategoriesScreen"
+          component={SettingsSelectCategoriesScreen}
+          options={({ route }) => ({
+            headerTitle: route.params.headerTitle,
+          })}
+        />
+      </Stack.Group>
     </Stack.Navigator>
   );
 };

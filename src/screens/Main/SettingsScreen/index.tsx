@@ -27,12 +27,28 @@ const SettingsScreen = ({ navigation }: MainStackNavProps<"MainTabs">) => {
       <ScrollView style={styles.scrollWrapper}>
         <Spacer y={20} />
 
-        <TouchableOpacity style={styles.row}>
+        <TouchableOpacity
+          style={styles.row}
+          onPress={() =>
+            navigation.push("SettingsSelectCountryScreen", {
+              headerTitle: "Select Country",
+            })
+          }
+        >
           <Typography>Select Country</Typography>
           <Entypo name="chevron-right" size={24} color={colors.text} />
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.row}>
-          <Typography>Select Categories</Typography>
+          <Typography
+            onPress={() =>
+              navigation.push("SettingsSelectCategoriesScreen", {
+                headerTitle: "Select Categories",
+              })
+            }
+          >
+            Select Categories
+          </Typography>
           <Entypo name="chevron-right" size={24} color={colors.text} />
         </TouchableOpacity>
         <View style={styles.row}>
