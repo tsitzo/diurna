@@ -76,7 +76,7 @@ const ExploreScreen = ({ navigation }: MainStackNavProps<"MainTabs">) => {
             renderItem={({ item }) => (
               <TouchableOpacity
                 style={{
-                  flex: 1,
+                  flex: 1 / 2,
                   aspectRatio: 1.2 / 1,
                   justifyContent: "center",
                   alignItems: "center",

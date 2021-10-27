@@ -61,8 +61,13 @@ const SettingsScreen = ({ navigation }: MainStackNavProps<"MainTabs">) => {
         </View>
         <Spacer y={20} />
 
-        <TouchableOpacity style={styles.row}>
-          <Typography>Bookmarked Articles</Typography>
+        <TouchableOpacity
+          style={styles.row}
+          onPress={() =>
+            navigation.navigate("BookmarksScreen", { headerTitle: "Bookmarks" })
+          }
+        >
+          <Typography>Bookmarks</Typography>
           <Entypo name="chevron-right" size={24} color={colors.text} />
         </TouchableOpacity>
 

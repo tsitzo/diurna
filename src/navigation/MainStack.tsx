@@ -10,11 +10,13 @@ import SearchResultsScreen from "../screens/Main/SearchResultsScreen";
 import SearchResultsByCategoryScreen from "../screens/Main/SearchResultsByCategoryScreen";
 import SettingsSelectCountryScreen from "../screens/Main/SettingsSelectCountryScreen";
 import SettingsSelectCategoriesScreen from "../screens/Main/SettingsSelectCategoriesScreen";
+import BookmarksScreen from "../screens/Main/BookmarksScreen";
 
 export type MainStackParams = {
   MainTabs: undefined;
   SearchResultsScreen: { query: string };
   SearchResultsByCategoryScreen: { category: string };
+  BookmarksScreen: { headerTitle: string };
   SettingsSelectCountryScreen: { headerTitle: string };
   SettingsSelectCategoriesScreen: { headerTitle: string };
 };
@@ -53,28 +55,33 @@ export const MainStack = () => {
         })}
       />
 
-      <Stack.Group
-        screenOptions={{
+      <Stack.Screen
+        name="BookmarksScreen"
+        component={BookmarksScreen}
+        options={({ route }) => ({
           headerLargeTitle: true,
           headerTransparent: true,
-          presentation: "formSheet",
-        }}
-      >
-        <Stack.Screen
-          name="SettingsSelectCountryScreen"
-          component={SettingsSelectCountryScreen}
-          options={({ route }) => ({
-            headerTitle: route.params.headerTitle,
-          })}
-        />
-        <Stack.Screen
-          name="SettingsSelectCategoriesScreen"
-          component={SettingsSelectCategoriesScreen}
-          options={({ route }) => ({
-            headerTitle: route.params.headerTitle,
-          })}
-        />
-      </Stack.Group>
+          headerTitle: route.params.headerTitle,
+        })}
+      />
+      <Stack.Screen
+        name="SettingsSelectCountryScreen"
+        component={SettingsSelectCountryScreen}
+        options={({ route }) => ({
+          headerLargeTitle: true,
+          headerTransparent: true,
+          headerTitle: route.params.headerTitle,
+        })}
+      />
+      <Stack.Screen
+        name="SettingsSelectCategoriesScreen"
+        component={SettingsSelectCategoriesScreen}
+        options={({ route }) => ({
+          headerLargeTitle: true,
+          headerTransparent: true,
+          headerTitle: route.params.headerTitle,
+        })}
+      />
     </Stack.Navigator>
   );
 };
