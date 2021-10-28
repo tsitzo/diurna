@@ -13,10 +13,12 @@ declare module "@react-navigation/native" {
       card: string;
       text: string;
       subtext: string;
+      subtext: string;
       separator: string;
       border: string;
       highlight: string;
       notification: string;
+      transparent: string;
     };
   };
   export function useTheme(): ExtendedTheme;

@@ -16,9 +16,9 @@ export const styles = StyleSheet.create({
   },
   image: { width: "100%", aspectRatio: 1 },
   placeholderImage: { width: 40, height: 40 },
-  infoContainer: { flex: 4 / 6, marginLeft: 10 },
+  infoContainer: { flex: 4.3 / 6, marginLeft: 10 },
   bookmarkButtonContainer: {
-    flex: 1 / 6,
+    flex: 0.7 / 6,
     justifyContent: "center",
     alignItems: "center",
   },

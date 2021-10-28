@@ -13,8 +13,9 @@ interface ITypographyProps extends TextProps {
     | "xl"
     | "selectionTile"
     | "fabText"
-    | "cardTitle";
-  color?: "text" | "primary";
+    | "cardTitle"
+    | "newsPanelDescription";
+  color?: "text" | "subtext" | "primary";
 }
 
 const Typography: FC<ITypographyProps> = ({

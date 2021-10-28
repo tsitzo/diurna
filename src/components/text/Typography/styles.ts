@@ -19,4 +19,7 @@ export const styles = StyleSheet.create({
     textShadowColor: "#000",
     fontWeight: "700",
   },
+  newsPanelDescription: {
+    fontSize: 16,
+  },
 });
