@@ -19,7 +19,10 @@ const NewsCard: FC<INewsCardProps> = ({ news }) => {
   const { colors } = useTheme();
   return (
     <TouchableOpacity
-      style={[styles.card, { backgroundColor: colors.card }]}
+      style={[
+        styles.card,
+        { backgroundColor: colors.card, shadowColor: colors.text },
+      ]}
       onPress={() => WebBrowser.openBrowserAsync(news.url)}
     >
       <View style={styles.imageContainer}>

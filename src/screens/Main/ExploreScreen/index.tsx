@@ -30,7 +30,23 @@ const ExploreScreen = ({ navigation }: MainStackNavProps<"MainTabs">) => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={{ flex: 1 }}>
           <Spacer y={10} />
-          <View style={[styles.searchBar, { backgroundColor: colors.card }]}>
+          <View
+            style={[
+              styles.searchBar,
+              {
+                backgroundColor: colors.card,
+                shadowColor: colors.text,
+                shadowOffset: {
+                  width: 0,
+                  height: 1,
+                },
+                shadowOpacity: 0.22,
+                shadowRadius: 2.22,
+
+                elevation: 3,
+              },
+            ]}
+          >
             <Ionicons name="search-sharp" size={24} color={colors.text} />
             <TextInput
               style={[
@@ -83,6 +99,15 @@ const ExploreScreen = ({ navigation }: MainStackNavProps<"MainTabs">) => {
                   backgroundColor: colors.card,
                   margin: 7.5,
                   borderRadius: 5,
+                  shadowColor: colors.text,
+                  shadowOffset: {
+                    width: 0,
+                    height: 1,
+                  },
+                  shadowOpacity: 0.22,
+                  shadowRadius: 2.22,
+
+                  elevation: 3,
                 }}
                 onPress={() =>
                   navigation.push("SearchResultsByCategoryScreen", {

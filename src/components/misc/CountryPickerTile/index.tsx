@@ -21,8 +21,16 @@ const CountryPickerTile: FC<ICountryPickerTileProps> = ({ country }) => {
     <TouchableOpacity onPress={() => selectCountry(country.iso)}>
       <View style={styles.row}>
         <View style={styles.leftContainer}>
-          <Image source={{ uri: country.flag }} style={styles.flag} />
-          <Typography variant="selectionTile">{country.name}</Typography>
+          {/* <Image source={{ uri: country.flag }} style={styles.flag} /> */}
+          <Image
+            source={country.flag}
+            style={styles.flag}
+            resizeMode="contain"
+          />
+          <View>
+            <Typography variant="selectionTile">{country.name}</Typography>
+            <Typography color="subtext">{country.name}</Typography>
+          </View>
         </View>
 
         {selectedCountry === country.iso && (

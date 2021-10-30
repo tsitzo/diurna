@@ -7,10 +7,11 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 5,
   },
-  flag: { height: 45, width: 45, marginRight: 15 },
+  flag: { height: 45, width: 30, marginRight: 15 },
   leftContainer: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
   },
   countryText: { fontWeight: "700" },
 });

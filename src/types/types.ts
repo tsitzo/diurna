@@ -1,7 +1,7 @@
 export type Country = {
   name: string;
   iso: string;
-  flag: string;
+  flag: any;
 };
 
 export type Category = {

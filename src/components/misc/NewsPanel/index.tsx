@@ -35,10 +35,14 @@ const NewsPanel: FC<INewsPanelProps> = ({ news }) => {
     <View
       style={{
         height: height - bottomBarHeight - insets.top,
+        maxHeight: height - bottomBarHeight - insets.top,
       }}
     >
       <TouchableOpacity
-        style={[styles.card, { backgroundColor: colors.card }]}
+        style={[
+          styles.card,
+          { backgroundColor: colors.card, shadowColor: colors.text },
+        ]}
         onPress={() => WebBrowser.openBrowserAsync(news.url)}
       >
         <ImageBackground
@@ -47,7 +51,7 @@ const NewsPanel: FC<INewsPanelProps> = ({ news }) => {
           resizeMode="cover"
         >
           <LinearGradient
-            style={{ height: "100%", justifyContent: "flex-end", padding: 10 }}
+            style={{ flex: 1, justifyContent: "flex-end", padding: 10 }}
             colors={[colors.transparent, colors.card]}
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}
